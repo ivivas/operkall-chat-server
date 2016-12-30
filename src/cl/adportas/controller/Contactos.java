@@ -49,7 +49,6 @@ public final class Contactos {
     private HashMap mapPrimerMensajeEjecutivo;
     private Timer timer;
     private Queue ejecutivosDisponibles;
-    private int segundosDeEsperaMaximo;
     private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(Contactos.class);
 
     public Contactos(Socket socket, String direccion_ip, String id_usuario, String puerto) {
@@ -66,7 +65,6 @@ public final class Contactos {
             this.mapPrimerMensajeEjecutivo = new HashMap();
             this.timer = new Timer();
             this.ejecutivosDisponibles = new LinkedList();
-            this.segundosDeEsperaMaximo = 30;
         } catch (Exception e) {
             logger.error(e.toString());
         }
@@ -207,7 +205,7 @@ public final class Contactos {
                                             }
                                          }
                                     };
-                                    timer.schedule(task, segundosDeEsperaMaximo*1000, segundosDeEsperaMaximo*1000);
+                                    timer.schedule(task, Servidor.segundosDeEsperaMaximo*1000, Servidor.segundosDeEsperaMaximo*1000);
                                     
                                     
                                 }

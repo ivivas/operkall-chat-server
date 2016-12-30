@@ -24,6 +24,7 @@ public final class Servidor {
     public static HashMap mapContactos = new HashMap();
     public static HashMap mapMensajes = new HashMap();
     public static int algoritmoReasignacion = 1;
+    public static int segundosDeEsperaMaximo = 30;
     private static final Logger logger = LogManager.getLogger(Servidor.class);
 
     public Servidor() {
@@ -101,12 +102,16 @@ public final class Servidor {
                 if (arg.startsWith("algoritmoReasignacion=")) {
                     algoritmoReasignacion = Integer.parseInt(arg.substring("algoritmoReasignacion=".length()).replaceAll("\"", ""));
                     logger.info("Algoritmo de reasignación = " + algoritmoReasignacion);
-                } 
-            } 
+                }
+                else if (arg.startsWith("segundosDeEsperaMaximo=")) {
+                    segundosDeEsperaMaximo = Integer.parseInt(arg.substring("segundosDeEsperaMaximo=".length()).replaceAll("\"", ""));
+                    logger.info("Segundos de espera máximo para el cliente = " + segundosDeEsperaMaximo);
+                }
+            }
         }
         else {
             logger.info("Sin argumentos de entrada. Se utilizarán los valores por defecto");
-            logger.info("Ejemplo de argumentos: algoritmoReasignacion=1");
+            logger.info("Ejemplo de argumentos: algoritmoReasignacion=1 segundosDeEsperaMaximo=60");
         }
         
         Servidor servidor1 = new Servidor();
